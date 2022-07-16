@@ -1,0 +1,27 @@
+{
+  "name": "grid",
+  "version": "1.0.0",
+  "description": "project made for flipkart's grid ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/durgesh077/grid.git"
+  },
+  "keywords": [
+    "grid",
+    "flipkart"
+  ],
+  "author": "durgesh077",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/durgesh077/grid/issues"
+  },
+  "homepage": "https://github.com/durgesh077/grid#readme",
+  "dependencies": {
+    "pdfkit": "^0.13.0",
+    "qrcode": "^1.5.1"
+  }
+}
