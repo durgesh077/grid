@@ -1,8 +1,10 @@
-const pinataSDK=require("@pinata/sdk")
 require("dotenv").config()
-const pinata_api=process.env.Pinata_API_Key
-const pinata_secret=process.env.Pinata_API_Secret
-const pinata = pinataSDK(pinata_api, pinata_secret);
-const {pinJson,pinImage}=require("./src/ipfs")(pinata)
-
-
+// const pinata=require('./pinata/pinata')
+// const {pinJson,pinImage}=require("./utils/ipfs")(pinata)
+// const web3=require('./web3/web3')
+// const {signContent,recoverAccountNo}=require("./utils/signContent")(web3)
+const express=require('express')
+const retailer=require('./retailer/retailer_server')
+const app=express()
+app.use("/retailer",retailer)
+app.listen(8000,()=>console.log('ready!!!'))
