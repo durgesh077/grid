@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script src="/retailer/js/submitMetadata.js"></script>
+</head>
+
+<body>
+    <form id="metadata">
+        Brand_name:<input type="text" name="brand_name"><br />
+        Model_no:<input type="text" name="model_no"><br />
+        Image: <input type="file" name="image"><br />
+        warranty_period(in months):<input type="text" name="warranty_period"><br />
+    </form>
+    <ol style="list-style-type:decimal;" id="remarks">
+        <li><textarea cols="100"></textarea></li>
+    </ol>
+    <button
+        style="color:white;background-color: rgb(102, 0, 255);font-size:2em;border-radius: 5000px;margin:auto;display:block"
+        onclick="addMoreRemark();">+</button>
+    <button style="color:white;background-color: red;font-size:2em;border-radius: 5000px;margin:auto;display:block"
+        onclick="removeLastRemark();">-</button>
+
+    <button onclick="uploadMetadata()">Submit </button>
+</body>
+<script>
+
+</script>
+
+</html>
