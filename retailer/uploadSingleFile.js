@@ -18,12 +18,11 @@ module.exports = async (req, res) => {
         brand_name: body.brand_name,
         model_no: body.model_no,
         warranty_period: body.warranty_period,
-        remarks: body.remarks.split(',')
+        remarks: body.remarks.split(','),
+        hashContent:body.hashContent||"tmp hash"
     }
     let hashJson = (await pinJson(content, content.brand_name + "_" + content.model_no)).IpfsHash
-    let signedContent = await signContent(hashJson)
-    let doc = new warrantyCollection({ CID: hashJson, signedCID: signedContent, brand_name: body.brand_name, model_no: body.model_no, userId: req.session.userId })
-    console.log(doc)
+    let doc = new warrantyCollection({ CID: hashJson, brand_name: body.brand_name, model_no: body.model_no, userId: req.session.userId })
     doc = await doc.save()
     res.send(doc.id)
 }
