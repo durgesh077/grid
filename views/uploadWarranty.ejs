@@ -2,35 +2,85 @@
 <html>
 
 <head>
+    <title>Distributed Warranty Card </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-    <script src="/js/submitMetadata.js"></script>
+    <link rel="stylesheet" href="/css/uploadWarranty.style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" <script
+        src="/js/submitMetadata.js">
+    </script>
+    <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <script src="/js/uploadWarranty.js"></script>
+    <script type="text/javascript" src="/js/web3.js"></script>
+    <script type="text/javascript" src="/js/metamask_connect.js"></script>
 </head>
 
 <body>
-    <form id="metadata">
-        Brand_name:<input type="text" name="brand_name"><br />
-        Model_no:<input type="text" name="model_no"><br />
-        Image: <input type="file" name="image"><br />
-        warranty_period(in months):<input type="text" name="warranty_period"><br />
-    </form>
-    <ol style="list-style-type:decimal;" id="remarks">
-        <li><textarea cols="100"></textarea></li>
-    </ol>
-    <button
-        style="color:white;background-color: rgb(102, 0, 255);font-size:2em;border-radius: 5000px;margin:auto;display:block"
-        onclick="addMoreRemark();">+</button>
-    <button style="color:white;background-color: red;font-size:2em;border-radius: 5000px;margin:auto;display:block"
-        onclick="removeLastRemark();">-</button>
+    <header class="mhdr">
+        <ul class="navigator">
+            <li current="true"><i class="fas fa-home"></i> <a class="mlnk">Home</a></li>
+            <li><i class="fas fa-id-card"></i> <a class="mlnk" href="wallet.html">Show Warranty</a></li>
+            <li><i class="fas fa-exchange-alt"></i> <a class="mlnk" href="orders.html">Transfer Warranty</a></li>
+            <li><i class="fas fa-user"></i> <a class="mlnk" href="about.html">Check Ownership</a></li>
+        </ul>
+    </header>
+    <div id="bg">
+        <div class="module">
+            <ul>
+                <li class="tab activeSelector" onclick="activate(0)">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                </li>
+                <li class="tab" onclick="activate(1)">
+                    <i class="fa fa-comments" aria-hidden="true"></i>
+                </li>
+            </ul>
 
-    <button onclick="uploadMetadata()">Submit </button>
+            <div class="activeTab">
+                <form class="form" id="gadgetForm">
+                    <input type="text" name="brand_name" placeholder="Brand Name" class="textbox" />
+                    <input type="text" name="model_no" placeholder="Model Name/Number" class="textbox" />
+                    <input type="text" name="warranty_period" placeholder="Warranty Period(in months)"
+                        class="textbox" />
+                    <label id="imageLabel" class="textbox" ondragover="dragOver(event)" ondragleave="dragLeave(event)"
+                        ondrop="dropped(event)">
+                        <span>Upload Image</span>
+                        <input type="file" name="image" style="display:none" class="textbox" accept="image/*"
+                            onchange="uploadImg(event)" />
+                    </label>
+                    <input type="button" value="Next" class="button" onclick="activate(1)" />
+                </form>
+            </div>
+
+            <div>
+                <form action="#" class="form" id="remarkForm">
+                    <input type="text" placeholder="Remark-1" name="Remark_1" class="textbox" />
+
+                    <div class="buttonGroup">
+                        <button type="button" onclick="addMoreRemark()">+</button>
+                        <button type="button" onclick="removeRemark()">-</button>
+                    </div>
+                    <button type="button" class="button disabled" onclick="submitForm()" disabled>Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="messenger" style="
+              position:fixed;
+              z-index:1;
+              top:50vh;
+              right:10px;
+              color:white;
+              font-size:1.5em;
+              padding:5px 10px;
+              opacity:0;
+              transition:opacity 0.5s ease-in-out">
+    </div>
+
 </body>
-<script>
 
-</script>
 
 </html>

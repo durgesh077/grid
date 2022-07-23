@@ -1,17 +1,90 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
+
+<head>
+    <title>Homepage- <%= userName %>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="warranty,shop,Ecommerce,blockchain">
+    <meta charset="UTF-8">
+    <script src="/js/debounce.js"></script>
+    <link rel="stylesheet" href="/css/home.style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        type="text/css" media="all" />
+
+    <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <script src="/js/home.js" defer></script>
+</head>
+
+<body>
+    <header class="mhdr">
+        <ul class="navigator">
+            <% let __dirname=process.cwd()%>
+            <%- include( __dirname+"/views/static/partials/navigationBar.html") %>
+
+            <li id="logoutUser" title="logout">
+                <span>
+                    <%= userId %>
+                </span>
+                <a href="/retailer/logout"> <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+    </header>
+
     <body>
-        <h2>This is homepage</h2>
-        <p>userName:<%= userName%></p>
-        <p>userId:<%= userId%></p>
-        <p>AccountNo:<%= ethAccountNo%></p>
+        <main id="whole">
+            <section id="left" 
+            <%-"guest=" +((userName==="Guest"))%>
+            >
+                <div class="preview-zone">
+                    <h4>Brand Name</h4>
+                    <section class="search" role="search">
+                        <form method="get" class="search__form">
+                            <input id="brand_search" class="search__input" type="search" name="search" maxlength="100"
+                                placeholder="brand name...." oninput="getWarrantyNo()" list="brand_list" />
+                        </form>
+                    </section>
+                </div>
+
+                <div class="preview-zone">
+                    <h4>Model Name/Number</h4>
+                    <section class="search" role="search">
+                        <form method="get" class="search__form">
+                            <input id="model_search" class="search__input" oninput="getWarrantyNo()"
+                                type="search" name="search" maxlength="100" placeholder="model name..."
+                                list="model_list" />
+                        </form>
+                    </section>
+                </div>
+
+                <div id="collections">
+                    <ul>
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <section id="right">
+                <ul>
+                    <a href="/retailer/upload" <%-"guest=" +((userName==="Guest"))%>>
+                            <li>
+                            Upload warranty
+                        </li>
+                    </a>
+                    <a>
+                    <li <%-"guest=" +((userName==="Guest"))%>>
+                        Validate warranty
+                    </li>
+                    </a>
+                    <li>
+                        Get warranty Reciept
+                    </li>
+                    <li>
+                        Show History
+                    </li>
+                </ul>
+            </section>
+        </main>
     </body>
+
 </html>

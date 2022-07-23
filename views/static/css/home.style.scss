@@ -1,0 +1,265 @@
+body {
+    background: rgb(48, 112, 164) url("../images/homepage-background.jpg") no-repeat fixed !important;
+    background-size: cover !important;
+}
+
+#logoutUser {
+    color: cyan;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: auto;
+    font-size: larger;
+    background-color: rgb(60, 55, 72);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/**
+ * Base styles
+ */
+
+body {
+    padding: 30px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #111;
+    -webkit-font-smoothing: antialiased;
+}
+
+h4 {
+    margin-top: 0;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.preview-zone {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    background-color: #1a1a1a;
+}
+
+.search__input {
+    padding: 0px 4px;
+}
+
+/**
+ * Search styles
+ */
+
+// Colors
+$input-color: #333;
+$button-color: #777;
+$icon-color: #666;
+
+// Namespace
+$ns: '.search';
+
+#{$ns} {
+    &__form {
+        display: flex;
+    }
+
+
+    // Icon modifier
+    &--icon {
+        #{$ns}__form {
+            position: relative;
+        }
+
+        #{$ns}__btn-submit {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 0;
+            width: 13px;
+            height: 100%;
+            background: none;
+
+            &:focus,
+            &:active,
+            &:hover {
+                box-shadow: none;
+
+                &:before {
+                    border-color: #eee;
+                }
+
+                &:after {
+                    background-color: #eee;
+                }
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                transition: background-color 200ms ease-out,
+                    border-color 200ms ease-out;
+            }
+
+            &:before {
+                right: 8px;
+                top: 8px;
+                width: 16px;
+                height: 16px;
+                border: 3px solid $icon-color;
+                border-radius: 100%;
+            }
+
+            &:after {
+                right: 30px;
+                top: 23px;
+                width: 3px;
+                height: 16px;
+                background-color: $icon-color;
+                transform: rotate(45deg);
+            }
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+
+    // Icon (Expandable) modifier
+    &--icon-expandable {
+        #{$ns}__input {
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition: transform 300ms ease-out;
+
+            &:focus,
+            &:active {
+                transform: scaleX(1);
+            }
+        }
+
+        #{$ns}__btn-submit {
+            background-color: $input-color;
+
+            &:hover {
+                background-color: $input-color;
+            }
+        }
+    }
+
+    &--expanded {
+        #{$ns}__input {
+            transform: scaleX(1);
+        }
+    }
+
+    &__input,
+    &__btn-submit {
+
+        &:focus,
+        &:active {
+            outline: 0;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    &__input {
+        width: 70%;
+        color: #eee;
+        font-size: 14px;
+        background-color: $input-color;
+        border: 0;
+    }
+
+    &__btn-submit {
+        position: relative;
+        padding: 15px;
+        color: #eee;
+        font-size: 13px;
+        background-color: #666;
+        border: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        z-index: 10;
+        transition: background-color 200ms ease-out;
+
+        &:hover {
+            background-color: $button-color;
+        }
+    }
+}
+
+#whole {
+    display: flex;
+    width: 100vw;
+}
+
+#left {
+    background-color: rgba(74, 128, 128, 0.58);
+    height: 90vh;
+    margin: 4px;
+    width: max-content;
+    border-radius: 5px;
+}
+
+#right {
+    border-radius: 5px;
+    background-color: rgba(78, 109, 84, 0.58);
+    height: 90vh;
+    margin: 4px;
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    place-items: left;
+    justify-content: left;
+    box-sizing: border-box;
+    padding: 4em;
+}
+#right ul{
+    list-style-type: none;
+}
+#right li {
+    margin: 20px 10px;
+    padding: 10px 10px;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: aqua;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgb(207, 173, 230);
+    font-size: xx-large;
+    transition: background-color 0.2s ease-in;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+#right li:hover {
+    background-color: rgb(138, 132, 50);
+    color: rgb(151, 46, 118)
+}
+
+#collections{
+
+    ul{
+        overflow:auto;
+        list-style-type: none;
+        height:70vh;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        li{
+            background-color: #666;
+            margin:3px 5px;;
+            border-radius: 4px;
+            border:2px solid darkgray;
+            padding:3px 5px;
+            color:aliceblue
+        }
+    }
+}
+
+[guest="true"]{
+    display:none;
+}

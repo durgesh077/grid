@@ -59,7 +59,7 @@ async function login(req, res) {
             session.userId = ret.userId
             session.ethAccountNo = ret.ethAccountNo
             res.status(200)
-            res.render("../views/home", { userName: ret.userName, userId: ret.userId, ethAccountNo: ret.ethAccountNo })
+            res.redirect("/retailer")
         }
     } catch (err) {
         console.log(err.message || err)

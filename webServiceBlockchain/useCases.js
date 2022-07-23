@@ -58,8 +58,8 @@ router.get("/getNFT", async (req, res) => {
     let contract = await contractPromise;
     let { mobile_no, serial_no } = req.query;
     try {
-        let owner = await contract.methods.getNFTFor(mobile_no, serial_no).call()
-        res.send(owner)
+        let NFT = await contract.methods.getNFTFor(mobile_no, serial_no).call()
+        res.send(NFT)
     } catch (err) {
         res.status(404).send(err.message)
     }

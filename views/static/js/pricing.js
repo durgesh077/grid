@@ -1,0 +1,3 @@
+function getSecretKey(expiresInSec){
+    
+}

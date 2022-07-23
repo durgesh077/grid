@@ -1,3 +1,4 @@
 {
-    "ext": "py,ejs,js"
+    "ext": "py,js",
+    "ignore": ["views/*", "README"] 
 }

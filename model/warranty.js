@@ -1,6 +1,6 @@
 let mongoose = require('mongoose')
 let mongoDB_account = process.env.mongoDB_account
-mongoose.connect(mongoDB_account)
+mongoose.connect(mongoDB_account).catch(err=>console.log(err.message))
 let schema = mongoose.Schema({
 	CID: { type: String, required: true },
 	brand_name: { type: String, required: true },

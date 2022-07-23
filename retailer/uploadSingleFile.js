@@ -5,10 +5,11 @@ const { signContent, recoverAccountNo } = require("../utils/signContent")(web3)
 const warrantyCollection = require('../model/warranty')
 module.exports = async (req, res) => {
     if (!req.session.userId) {
-        res.status(404)
-        res.send("-1")
+        res.status(405)
+        res.send("Please login first")
         return
     }
+    try{
     let imgBuffer = req.file.buffer
     let body = req.body
     let hashImage = await pinImage(imgBuffer, req.file.originalname)
@@ -19,10 +20,13 @@ module.exports = async (req, res) => {
         model_no: body.model_no,
         warranty_period: body.warranty_period,
         remarks: body.remarks.split(','),
-        hashContent:body.hashContent||"tmp hash"
+        hashContent: body.hashContent 
     }
     let hashJson = (await pinJson(content, content.brand_name + "_" + content.model_no)).IpfsHash
     let doc = new warrantyCollection({ CID: hashJson, brand_name: body.brand_name, model_no: body.model_no, userId: req.session.userId })
     doc = await doc.save()
     res.send(doc.id)
+    }catch(err){
+        res.status(400).send(err.message)
+    }
 }
