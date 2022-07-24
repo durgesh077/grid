@@ -26,7 +26,7 @@
                 <span>
                     <%= userId %>
                 </span>
-                <a href="/retailer/logout"> <i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                <a href="/retailer/logout" <%-"guest=" +((userName==="Guest"))%>> <i class="fa fa-times-circle" aria-hidden="true"></i></a>
             </li>
         </ul>
     </header>
@@ -76,11 +76,15 @@
                         Validate warranty
                     </li>
                     </a>
-                    <li>
+                    <li class="opener" onclick="showHide(this)">
                         Get warranty Reciept
                     </li>
-                    <li>
-                        Show History
+                    <li style="display: none;" id="warrantyEntry">
+                        <form action="/user/getReceipt" target="_new" >
+                            <input type="text" placeholder="Mobile No" name="mobile_no" class="receiptBox">
+                            <input type="text" placeholder="Serial No" name="serial_no" class="receiptBox">
+                            <button type="submit">Submit</button>
+                        </form>
                     </li>
                 </ul>
             </section>

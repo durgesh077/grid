@@ -185,14 +185,68 @@
 #secretKey {
   display: none;
   position: fixed;
-  width: 50%;
-  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 35px 25px;
+  width: 25em;
   border: 2px solid brown;
-  background-color: aquamarine;
+  background-color: gray;
+  border-radius: 5px;
 }
+
 #secretKey span {
   background-color: #3f3f3f;
   border: 2px solid black;
   color: antiquewhite;
+  word-break: break-all;
+  padding: 7px;
   display: inline-block;
-}/*# sourceMappingURL=pricing.style.css.map */
+  margin: auto;
+}
+
+#secretKey em {
+  text-decoration: underline;
+}
+
+h4 {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+#secretKey button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  background-color: darkred;
+  margin-top: 5px;
+  padding: 2px 5px;
+  border: 1px solid black;
+  color: aqua;
+}
+#secretKey button :active {
+  color: #fff;
+}
+
+.read {
+  cursor: pointer;
+}
+
+#secretKey > button {
+  background-color: tomato;
+  display: inline-block;
+}
+
+#secretKey input {
+  color: darkorchid;
+  padding: 1px 5px;
+  outline: none;
+  background-color: lightgreen;
+  font-size: 1.3em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+/*# sourceMappingURL=pricing.style.css.map *//*# sourceMappingURL=pricing.style.css.map */

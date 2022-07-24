@@ -213,4 +213,34 @@ a {
 
 [guest=true] {
   display: none;
+}
+
+li#warrantyEntry {
+  background-color: transparent;
+  box-shadow: none;
+}
+li#warrantyEntry input {
+  width: 30%;
+  padding: 10px;
+  outline: none;
+  background-color: lightgray;
+}
+li#warrantyEntry button {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  border-radius: 2px;
+  padding: 5px;
+}
+li#warrantyEntry button:active {
+  box-shadow: 2px 2px 5px cyan, -2px -2px 5px cyan;
+}
+li#warrantyEntry:hover {
+  background-color: transparent;
+}
+
+.opener {
+  cursor: pointer;
+}
+
+.opener:hover {
+  background-color: yellowgreen !important;
 }/*# sourceMappingURL=home.style.css.map */

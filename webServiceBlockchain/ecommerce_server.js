@@ -56,7 +56,7 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
         res.status(200)
         res.send(receipt)
     } catch (err) {
-        res.status(404)
+        res.status(501)
         res.send(err.message)
     }
 })
@@ -75,7 +75,7 @@ router.post("/burnNFT", authenticationMiddleware, async (req, res) => {
         res.status(200)
         res.send(receipt)
     } catch (err) {
-        res.status(404)
+        res.status(501)
         res.send(err.message)
     }
 })

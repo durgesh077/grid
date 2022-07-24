@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Distributed Warranty Card </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="warranty,shop,Ecommerce,blockchain">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <link rel="stylesheet" href="/css/checkDetails.style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        type="text/css" media="all" />
+    <script src="/js/checkDetails.js" defer></script>
+</head>
+
+<body>
+    <header class="mhdr">
+        <ul class="navigator">
+            <% let __dirname=process.cwd()%>
+                <%- include( __dirname+"/views/static/partials/navigationBar.html") %>
+        </ul>
+    </header>
+    <form class="search" >
+        <input type="search" placeholder="Search here..." required>
+        <button type="button" onclick="search()">Search</button>
+    </form>
+
+
+    <div id="details" style="display:none">
+        <div>
+        <label>
+            Owner Mobile No: <input name="owned_by" disabled>
+        </label>
+        <label>
+            purchased From: <input name="minted_by" disabled>
+        </label>
+        <label>
+            Brand Name: <input name="brand_name" disabled>
+        </label>
+        <label>
+            Model NO: <input name="model_no" disabled>
+        </label>
+        <label>
+            Purchase Date: <input name="purchase_date" disabled>
+        </label>
+        </div>
+
+        <div>
+            <img src="" alt="Gadget Image" width="100%" height="100%">
+        </div>
+        <button type="button" onclick="window.open(`/user/getReceipt?mobile_no=${detailsInps[0].value}&serial_no=${textBox.value}`)"> Show As PDF</button>
+    </div>
+
+    
+    <div id="messenger" style="
+                  position:fixed;
+                  z-index:1;
+                  top:50vh;
+                  right:10px;
+                  color:white;
+                  font-size:1.5em;
+                  padding:5px 10px;
+                  opacity:0;
+                  transition:opacity 0.5s ease-in-out">
+    </div>
+</body>
+
+
+</html>

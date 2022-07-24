@@ -25,3 +25,14 @@ async function hello() {
     }
 }
 let getWarrantyNo = debounce(hello, 500)
+let warrantyEntry = document.getElementById("warrantyEntry")
+function showHide(el){
+    let disp=warrantyEntry.style.display
+    if (disp == "none"){
+        warrantyEntry.style.display="block"
+        warrantyEntry.style.transform="scaleY(1)"
+    }else{
+        warrantyEntry.style.display = "none"
+        warrantyEntry.style.transform = "scaleY(0)"
+    }
+}

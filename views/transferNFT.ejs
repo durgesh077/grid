@@ -1,24 +1,53 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <title>Distributed Warranty Card </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="warranty,shop,Ecommerce,blockchain">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/transferNFT.style.css" type="text/css">
+    <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        type="text/css" media="all" />
     <script src="/js/transferNFT.js" defer></script>
 </head>
 
 <body>
-    <form id="transferNFT">
-        From Mobile No: <input type="text" name="from_mobile_no"><br />
-        To Mobile No: <input type="text" name="to_mobile_no"> <br />
-        Serial_no: <input type="text" name="serial_no"> <br />
-    </form>
+    <header class="mhdr">
+        <ul class="navigator">
+    <li ><i class="fas fa-home"></i> <a href="/" class="mlnk">Home</a></li>
+    <li><i class="fas fa-shopping-cart"></i> <a class="mlnk" href="/ecommercePages/pricing">Ecommerce APIs</a></li>
+    <li current="true"><i class="fas fa-exchange-alt"></i> <a class="mlnk" href="/user/transferWarranty">Transfer Warranty</a></li>
+    <li><i class="fas fa-user"></i> <a class="mlnk" href="/user/checkDetails">Check Ownership</a></li>
+        </ul>
+    </header>
+    <section class="loginForm">
+        <h2>Transfer Panel</h2>
+        <form  method="post" id="transferNFT">
+            <input type="text" name="from_mobile_no" id="from" placeholder="From...." required>
+            <input type="text" placeholder="To..." name="to_mobile_no" id="to" required><br>
+            <input type="text" placeholder="Serial no..." name="serial_no" id="serial_no" required><br>
 
-    <button onclick="sendOTP(this)">get OTP</button>
+            <label style="display:none" id="otpLabel">
+                <input type="number" placeholder="otp" size="6" 
+                 name="otp" id="otp">
+            </label>
+
+            <button type="button" id="btnli" class="btn" onclick="sendOTP(this)">
+                Get OTP
+            </button>
+        </form>
+    </section>
+        <div id="messenger" style="
+                  position:fixed;
+                  z-index:1;
+                  top:50vh;
+                  right:10px;
+                  color:white;
+                  font-size:1.5em;
+                  padding:5px 10px;
+                  opacity:0;
+                  transition:opacity 0.5s ease-in-out">
+        </div>
 </body>
+
 
 </html>

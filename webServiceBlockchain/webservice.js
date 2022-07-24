@@ -5,4 +5,6 @@ router.get("/pricing", (req, res) => {
     res.render("../views/pricing")
 })
 
+
+
 module.exports=router;

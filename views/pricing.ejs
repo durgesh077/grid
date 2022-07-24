@@ -12,7 +12,7 @@
             type="text/css" media="all" />
 
         <link rel="stylesheet" href="/css/header.css" type="text/css">
-        <script src="/js/home.js" defer></script>
+        <script src="/js/pricing.js" defer></script>
     </head>
     <body>
         
@@ -32,7 +32,7 @@
                             <div class="pricingTable-header">
                                 <h3 class="heading">Standard</h3>
                                 <span class="subtitle">Basic Usage</span>
-                                <div class="price-value">FREE
+                                <div class="price-value">Trial
                                     <span class="currency"></span>
                                     <span class="month"></span>
                                 </div>
@@ -40,10 +40,10 @@
                             <ul class="pricing-content">
                                 <li>Minting capability</li>
                                 <li>100 minting (Max) per day</li>
-                                <li>NO burning</li>
+                                <li>10 burning</li>
                                 <li>Slow speed</li>
                             </ul>
-                            <a href="#" class="read">sign up<i class="fa fa-angle-right"></i></a>
+                            <a class="read" onclick="getSecretKey(1000000000)">sign up<i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
         
@@ -64,7 +64,6 @@
                                 <li>Moderate speed</li>
                             </ul>
                             <a class="read" 
-                            onclick="getSecretKey(1000000000)"
                             >sign up<i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
@@ -85,7 +84,7 @@
                                 <li>Advanced functionlity</li>
                                 <li>High speed</li>
                             </ul>
-                            <a href="#" class="read">sign up<i class="fa fa-angle-right"></i></a>
+                            <a  class="read">sign up<i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -93,10 +92,30 @@
         </div>
 
 
-        <div id="secretKey">
-           secretKey: <span>
-            </span>
-            <i class="fas fa-clip"></i>
+    <div id="secretKey">
+        <input type="text" placeholder="Minter Name" id="secret_user_name" required>
+        <button type="button" onclick="getSecret()">Get Secret Key</button>
+        <hr />
+        <h4>Secret Key:</h4>
+        <span>
+            <em id="secret"></em>
+            <button onclick="copyText()">copy</button>
+        </span>
+    
+        <button type="button" onclick="cutIt()">Okay</button>
+    </div>
+
+        <div id="messenger" style="
+                  position:fixed;
+                  z-index:1;
+                  top:50vh;
+                  right:10px;
+                  color:white;
+                  font-size:1.5em;
+                  padding:5px 10px;
+                  opacity:0;
+                  transition:opacity 0.5s ease-in-out">
         </div>
+
     </body>
 </html>

@@ -263,3 +263,35 @@ a {
 [guest="true"]{
     display:none;
 }
+
+
+li#warrantyEntry {
+    background-color: transparent ;
+    box-shadow: none;
+    input{
+        width: 30%;
+        padding:10px ;
+        outline: none;
+        background-color: lightgray;
+    }
+    
+    button{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border-radius: 2px;
+        padding:5px;
+        &:active{
+            box-shadow: 2px 2px 5px cyan, -2px -2px 5px cyan;
+        }
+    }
+    
+    &:hover{
+        background-color: transparent;
+    }
+}
+.opener{
+    cursor:pointer;
+}
+.opener:hover{
+    background-color: yellowgreen !important;
+
+}

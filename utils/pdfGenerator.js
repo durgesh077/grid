@@ -6,9 +6,8 @@ async function genPDF(brand_name,model_name,serial_number,
 						warranty_period,expiry_date,warranty_number,remarks,
 						history){
 	let warranty_QR_img=await qr.toBuffer(new String(warranty_number).toString())
-	let fd=fs.createWriteStream('qr.pdf')
 	let doc=new PDFDocument()
-	doc.pipe(fd)
+	
 	let imageWidth = 180 // image width
 	let image_pos_x=doc.page.width-imageWidth;
 	let image_pos_y=0;
@@ -60,7 +59,7 @@ async function genPDF(brand_name,model_name,serial_number,
 
 	doc.fillColor("black").text("REMARKS:-",{align:'center',underline:true})
 	doc.fillColor('#3f3f3f')
-	doc.list(['hello','how are you'])
+	doc.list(remarks)
 
 	doc.addPage()
 	doc.fontSize(20).fillColor('orange').text("PURCHASE HISTORY",{underline:true,align:'center'})
@@ -84,17 +83,7 @@ async function genPDF(brand_name,model_name,serial_number,
 		addPage(doc,his)
 		doc.moveDown(1)
 		}
-
 	doc.end()
+	return doc
 }
-try{
-genPDF("Samsung",'galaxy','1231412314421',"5","8/2/2022",55555,["love","nothign"],[[
-	['date','12/4/20'],['from','durgesh']
-	],[
-	['date','12/4/20'],['from','durgesh']
-	],[
-	['from','flipkart'],['to',['99912342']],['to',['99912342']]
-	]])
-}catch{
-	console.log("error")
-}
+module.exports=genPDF

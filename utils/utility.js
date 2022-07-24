@@ -6,7 +6,7 @@ module.exports=function readURL(url){
 		request(url).on('data',chunk=>{
 			buffer.push(chunk)
 		}).on('close',()=>{
-			resolve(Buffer.concat(buffer))
+				resolve(Buffer.concat(buffer))
 		}).on('error',()=>reject("something went wrong"))
 	})
 }
