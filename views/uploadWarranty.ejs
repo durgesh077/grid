@@ -47,9 +47,9 @@
                         class="textbox" />
                     <label id="imageLabel" class="textbox" ondragover="dragOver(event)" ondragleave="dragLeave(event)"
                         ondrop="dropped(event)">
-                        <span>Upload Image</span>
+                        <span style="color:blue;">Drop Image</span>
                         <input type="file" name="image" style="display:none" class="textbox" accept="image/*"
-                            onchange="uploadImg(event)" />
+                            onchange="uploadImg(event)" disabled />
                     </label>
                     <input type="button" value="Next" class="button" onclick="activate(1)" />
                 </form>

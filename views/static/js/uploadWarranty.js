@@ -10,6 +10,7 @@ function dropped(ev) {
     let file = ev.dataTransfer.files[0]
     try {
         ev.target.lastElementChild.file = file;
+        console.log(ev.target.lastElementChild)
         ev.target.firstElementChild.innerHTML = file.name
     } catch {
         showMessage("not uploaded","orange","times")
@@ -19,8 +20,9 @@ function dragLeave(ev) {
     ev.target.classList.remove("dragOver")
 }
 function uploadImg(ev) {
-    let file = ev.target.files[0]
-    ev.target.parentNode.firstElementChild.innerHTML = file.name
+    // let file = ev.target.files[0]
+    // console.log(file,ev.target)
+    // ev.target.parentNode.firstElementChild.innerHTML = file.name
 }
 
 function activate(n) {
