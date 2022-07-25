@@ -37,7 +37,7 @@ router.post("/uploadMetadata", upload.single("image"), uploadSingleFile)
 router.post("/signupForm", bodyParser.urlencoded({ extended: false }), signup)
 router.post("/loginForm", bodyParser.urlencoded({ extended: false }), login)
 router.get("/logout",(req,res)=>{
-	req.session.destroy()
+	req.session=null
 	res.redirect("/retailer/")
 })
 router.get('/loginGuest',(req,res)=>{
