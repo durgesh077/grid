@@ -19,4 +19,4 @@ const app = express()
 app.get("/",(req,res)=>{
     res.send("hello Guys");
 })
-app.listen(8000, () => console.log('ready!!!'))
+app.listen(process.env.PORT||8000, () => console.log('ready!!!'))
