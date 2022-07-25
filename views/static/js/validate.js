@@ -25,6 +25,9 @@ function showResult(data) {
 }
 
 function afterConnection() {
+    let button=document.querySelector(".search button")
+    button.style.opacity=1;
+    button.style.cursor="default";
 }
 
 const getNFT = async (mobile_no, serial_no) => {
