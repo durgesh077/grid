@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate </title>
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="/css/checkDetails.style.css" type="text/css">
+    <link rel="stylesheet" href="/css/validate.style.css" type="text/css">
+    <link rel="icon" href="/icons/warranty_icon.ico">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        type="text/css" media="all" />
+    <script type="text/javascript" src="/js/web3.js"></script>
+    <script type="text/javascript" src="/js/metamask_connect.js" defer></script>
+    <script src="/js/validate.js" defer></script>
+</head>
+
+<body>
+    <header class="mhdr">
+        <ul class="navigator">
+            <% let __dirname=process.cwd()%>
+            <%- include( __dirname+"/views/static/partials/navigationBar.html") %>
+        </ul>
+    </header>
+
+    <form class="search">
+        <input type="search" placeholder="Enter Serial Number here..." required>
+        <button type="button" onclick="search()">Search</button>
+    </form>
+    
+    
+    <div id="details" style="display:none">
+        <div>
+            <label>
+                <span>Owner Mobile No:</span> <input name="owned_by" disabled>
+            </label>
+            <label>
+            <span> purchased From:</span> <input name="minted_by" disabled>
+            </label>
+            <label>
+            <span>  Brand Name: </span><input name="brand_name" disabled>
+            </label>
+            <label>
+            <span>   Model NO:</span> <input name="model_no" disabled>
+            </label>
+            <label>
+            <span> Purchase Date: </span><input name="purchase_date" disabled>
+            </label>
+            <label>
+            <span> Account No: </span> <input name="account_no" disabled>
+            </label>
+            <label>
+            <span> Verification: </span> <input name="verification" disabled>
+            </label>
+            <label>
+            <span>  Verification Result:</span> <input name="result" disabled>
+            </label>
+            <label>
+            <span>  Status:</span> <input name="status" disabled>
+            </label>
+        </div>
+    
+        <div>
+            <img src="" alt="Gadget Image" width="100%" height="100%">
+        </div>
+        <button type="button"
+            onclick="window.open(`/user/getReceipt?mobile_no=${detailsInps[0].value}&serial_no=${textBox.value}`)"> Show As
+            PDF</button>
+    </div>
+
+    <div id="messenger" style="
+          position:fixed;
+          z-index:1;
+          top:50vh;
+          right:10px;
+          color:white;
+          font-size:1.5em;
+          padding:5px 10px;
+          opacity:0;
+          transition:opacity 0.5s ease-in-out">
+    </div>
+</body>
+
+</html>

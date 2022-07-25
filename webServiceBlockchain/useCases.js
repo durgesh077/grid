@@ -68,7 +68,7 @@ router.get("/getNFT", async (req, res) => {
         let NFT = await contract.methods.getNFTFor(mobile_no, serial_no).call()
         res.send(NFT)
     } catch (err) {
-        res.status(404).send(err.message)
+        res.status(403).send(err.message)
     }
 })
 
@@ -119,6 +119,17 @@ router.get("/checkDetails",(req,res)=>{
     res.render("../views/checkDetails")
 })
 
+router.get("/getMinterOf",async(req,res)=>{
+    let {serial_no}=req.query
+    let doc=await minterModel.findOne({
+        serial_no
+    })
+    if(doc===null){
+    res.status(403).send("Not Found")
+        return
+    }
+    res.send(doc.minterName)
+})
 
 router.get("/getDetails",async(req,res)=>{
     let {serial_no}=req.query

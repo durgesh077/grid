@@ -1,7 +1,13 @@
 let secretKey = document.getElementById("secretKey")
+let helper = document.getElementById("helper")
 let secret = document.getElementById('secret')
-let messenger=document.getElementById("messenger")
+let messenger = document.getElementById("messenger")
 let expiresInSec
+let codes = helper.querySelectorAll("code")
+codes[0].textContent =
+    `curl -X POST ${location.protocol}//${location.host}/ecommerce/mintNFT -H "x-access-token:<secret_key>" -d "mobile_no=<mobile_no>&serial_no=<serial_no>&warranty_id=<warranty_id>&startAfter=<startAfter>"`
+
+codes[1].textContent = `curl -X POST ${location.protocol}//${location.host}/ecommerce/burnNFT -H "x-access-token:<secret_key>" -d "serial_no=<serial_no>"`
 async function getSecretKey(time) {
     expiresInSec = time
     secretKey.style.display = "block";
@@ -10,6 +16,7 @@ async function getSecretKey(time) {
 function copyText() {
     let text = secret.innerText
     navigator.clipboard.writeText(text)
+    showMessage('copied','orange','copy')
 }
 
 function cutIt() {
@@ -27,14 +34,13 @@ async function getSecret() {
             method: 'post',
             body: usp
         })
-        if(ret.status==200){
+        if (ret.status == 200) {
             secret.innerText = await ret.text()
-        }else{
-            showMessage(await ret.text(),"orange","times")
+        } else {
+            showMessage(await ret.text(), "orange", "times")
         }
     } catch (err) {
-        console.log(err.message)
-        showMessage(err.message,'red','times')
+        showMessage(err.message, 'red', 'times')
     }
 }
 

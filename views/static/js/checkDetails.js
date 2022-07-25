@@ -22,6 +22,10 @@ function showResult(data){
     
 }
 
+function afterConnection(){
+    console.log("connected to ethereum")
+}
+
 async function search(){
     let serial_no=textBox.value
     if(serial_no===""){

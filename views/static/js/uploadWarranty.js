@@ -12,7 +12,7 @@ function dropped(ev) {
         ev.target.lastElementChild.file = file;
         ev.target.firstElementChild.innerHTML = file.name
     } catch {
-        console.log("not uploaded")
+        showMessage("not uploaded","orange","times")
     }
 }
 function dragLeave(ev) {
@@ -52,7 +52,7 @@ function removeRemark() {
     try {
         remarks[remarks.length - 1].remove()
     } catch (err) {
-        console.log(err.message)
+        showMessage(err.message,"orange","times")
     }
 }
 
@@ -71,10 +71,11 @@ async function submitForm() {
 
     let imageDoc = document.getElementsByName('image')[0]
     fd.set("image", imageDoc.file)
-    let body = Object.fromEntries(fd.entries())
-    delete body.image
+    let body = [fd.get("brand_name"),fd.get("model_no"),fd.get("warranty_period"),
+                fd.get("remarks")].join('\/')
+
     try {
-        let hash = web3.utils.keccak256(JSON.stringify(body))
+        let hash = web3.utils.keccak256(body)
         let hashContent = await web3.eth.personal.sign(hash, accountNumber)
         fd.append("hashContent", hashContent)
         let ret = await fetch("/retailer/uploadMetadata", {
@@ -83,7 +84,7 @@ async function submitForm() {
         })
 
         if (ret.status == 200) {
-            showMessage(await ret.text(), 'green', 'check', -1)
+            showMessage("warranty_id: "+await ret.text(), 'green', 'check', -1)
         } else {
             showMessage(await ret.text(), 'red', 'times', -1)
         }

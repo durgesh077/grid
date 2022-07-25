@@ -60,4 +60,8 @@ router.get('/', (req, res) => {
 router.get('/login',(req,res)=>{
 	res.redirect('/retailer/')
 })
+
+router.get('/validate',(req,res)=>{
+	res.render('../views/validate')
+})
 module.exports = router

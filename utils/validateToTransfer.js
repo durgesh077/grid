@@ -15,13 +15,12 @@ async function sendOTP(mob_from, mob_to, serial_no) {
         setTimeout(() => {
             OTPs.delete(mob_from)
         }, 15 * 60000)
-        console.log(randOTP)
-        //let message=await client.messages
-        //    .create({
-        //        from: '+19593012344',
-        //        body,
-        //        to: "+91"+mob_from
-        //    })
+        await client.messages
+            .create({
+                from: '+19593012344',
+                body,
+                to: "+91"+mob_from
+            })
         return true
     } catch (err) {
         console.log(err.message)

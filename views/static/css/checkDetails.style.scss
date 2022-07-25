@@ -54,11 +54,12 @@ body {
 
 
 #details{
+  
   padding: 20px;
   background-color: navy;
   border:2px solid cyan;
   outline:3px solid yellow;
-  width:min-content;
+  width:50vw;
   margin:auto;
   display: flex;
   flex-flow: row nowrap;
@@ -66,15 +67,28 @@ body {
     color:aqua;
   }
   div:first-child{
-    padding:3px;
+    padding:10px;
     border:2px solid cyan;
-    display: inline-block;
+    display: grid;
+    place-items: end;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+  }
+  span{
+    width:100px;
+    color: bisque;
+    overflow: hidden;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
   input{
-    font-size: 1.8em;
-    padding:5px;
+    font-size: 0.9em;
+    font-family: Arial, Helvetica, sans-serif;
+    padding:10px;
     text-align: center;
     user-select: all;
+    margin:4px;
+    background-color: #15c8663f;
+    color:cyan;
   }
   div:nth-child(2){
     margin-top: 5px;
@@ -86,9 +100,16 @@ body {
     border: 2px solid cyan;
   }
   button{
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
     background-color: powderblue;
     border-radius: 3px;
     border: 2px solid orange;
+    &:active{
+      background-color: darkgray;
+      border: 2px double brown;
+    }
   }
 }
 // SEARCH ENDS

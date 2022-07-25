@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="warranty,shop,Ecommerce,blockchain">
         <meta charset="UTF-8">
+        <link rel="icon" href="/icons/warranty_icon.ico">
         <script src="/js/debounce.js"></script>
         <link rel="stylesheet" href="/css/pricing.style.css" type="text/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -99,10 +100,26 @@
         <h4>Secret Key:</h4>
         <span>
             <em id="secret"></em>
-            <button onclick="copyText()">copy</button>
+            <button onclick="copyText()"><i class="fas fa-copy"></i></button>
         </span>
     
         <button type="button" onclick="cutIt()">Okay</button>
+
+        <div id="helper">
+            <div>
+                <span>
+                    For Minting:
+                </span>
+                <code type="text"  disabled></code>
+                </div>
+
+            <div>
+                <span>
+                    For Burning:
+                </span>
+                <code type="text"  disabled></code>
+            </div>
+        </div>
     </div>
 
         <div id="messenger" style="

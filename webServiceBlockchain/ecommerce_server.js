@@ -6,6 +6,10 @@ const minterModel = require("../model/minter")
 const minterCollection = require("../model/minterCollection")
 const warrantyModel = require("../model/warranty")
 const { getJWTToken, authenticationMiddleware } = require('../utils/jwt')
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = require('twilio')(accountSid, authToken);
+const oneDay=24*60*60
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
@@ -53,6 +57,16 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
         let doc=await warrantyModel.findById(warranty_id)
         let CID=doc.CID
         let receipt = await contract.methods.mintWarrantyCardNFT(mobile_no, serial_no, CID, startAfter).send();
+        let body=`You warranty NFT for gadget having Serial No ${serial_no} has started  from now. If replaced within ${Math.ceil(startAfter/oneDay)} days, your warranty NFT will be discarded.
+        You can download you warranty card in pdf format at http://localhost:8000/user/getReceipt?mobile_no=${mobile_no}&serial_no=${serial_no}.
+        To share Your NFT please visit http://localhost:8000/user/sendNFT.
+        Thank You`;
+        await client.messages
+            .create({
+                from: '+19593012344',
+                body,
+                to: "+91" + mobile_no
+            })
         res.status(200)
         res.send(receipt)
     } catch (err) {

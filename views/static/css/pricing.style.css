@@ -249,4 +249,25 @@ h4 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+#helper {
+  margin: 10px;
+  padding: 5px;
+  background-color: #1a0768;
+}
+#helper div {
+  margin: 5px;
+  display: block;
+  padding: 3px;
+  border: 2px solid cyan;
+  background-color: #21591f;
+}
+#helper div code {
+  color: white;
+  word-break: break-all;
+  display: inline-block;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+}
+
 /*# sourceMappingURL=pricing.style.css.map *//*# sourceMappingURL=pricing.style.css.map */
