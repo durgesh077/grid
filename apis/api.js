@@ -1,4 +1,5 @@
 const warrantyModel=require("../model/warranty")
+const customerModel=require("../model/customer")
 const express = require("express")
 const router = express.Router()
 router.get("/warrantyDetail", async (req, res) => {
@@ -20,4 +21,26 @@ router.get("/warrantyDetail", async (req, res) => {
     }
 })
 
+
+router.get("/getEthAccountno",async(req,res)=>{
+    let {userId}=req.query
+    try{
+        let doc=await customerModel.findOne({
+            userId
+        })
+        if(doc===null)
+            res.status(403).send("no User Id exists")
+        else
+            res.send(doc.ethAccountNo)
+    }catch(err){
+        res.status(500).send("internal error")
+    }
+})
+
+router.get("/deleteAccount",async(req,res)=>{
+    let {userId}=req.query
+    customerModel.deleteOne({
+        userId
+    }).then(res.send("deleted")).catch(res.status(400).send("Not deleted"))
+})
 module.exports=router
