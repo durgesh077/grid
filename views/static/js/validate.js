@@ -18,16 +18,17 @@ function showResult(data) {
     detailsInps[2].value = data.brand_name
     detailsInps[3].value = data.model_no
     detailsInps[4].value = data.purchase_date
-    detailsInps[5].value = data.account_no
-    detailsInps[6].value = data.verification
-    detailsInps[7].value = data.result
-    detailsInps[8].value = data.status
+    detailsInps[5].value = data.purchase_time
+    detailsInps[6].value = data.account_no
+    detailsInps[7].value = data.verification
+    detailsInps[8].value = data.result
+    detailsInps[9].value = data.status
 }
 
 function afterConnection() {
-    let button=document.querySelector(".search button")
-    button.style.opacity=1;
-    button.style.cursor="default";
+    let button = document.querySelector(".search button")
+    button.style.opacity = 1;
+    button.style.cursor = "default";
 }
 
 const getNFT = async (mobile_no, serial_no) => {
@@ -77,19 +78,20 @@ async function getDetails(serial_no) {
         let hash = web3.utils.keccak256(body)
         let hashContent = ret.hashContent
         let retailer_acc_no = await web3.eth.personal.ecRecover(hash, hashContent)
-        let purchase_date = new Date(NFT[0])
-        console.log(NFT[0])
+        let purchase_date = new Date(NFT[0] * 1000)
         let expiryTimestamp = (purchase_date.setMonth(purchase_date.getMonth() + ret.warranty_period))
         let is_expired = (expiryTimestamp < new Date())
         json = Object.assign(json, {
             purchase_date: purchase_date.toLocaleDateString(),
             brand_name: ret.brand_name,
             model_no: ret.model_no,
+            purchase_time: purchase_date.toLocaleTimeString(),
             account_no: retailer_acc_no,
             verification: retailer_acc_no == accountNumber.toLowerCase() ? "successfull" : "failed",
             result: is_expired ? "expired" : "not expired",
-            status: (!is_expired && (retailer_acc_no == accountNumber)) ? "valid" : "invalid"
+            status: ((!is_expired) && (retailer_acc_no == accountNumber.toLowerCase())) ? "valid" : "invalid"
         })
+
         messenger.style.opacity = (0)
         messenger.innerHTML = ""
         showResult(json)

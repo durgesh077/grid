@@ -20,9 +20,14 @@ function dragLeave(ev) {
     ev.target.classList.remove("dragOver")
 }
 function uploadImg(ev) {
-    // let file = ev.target.files[0]
-    // console.log(file,ev.target)
-    // ev.target.parentNode.firstElementChild.innerHTML = file.name
+    ev.preventDefault()
+    let imgInp=Object.assign(document.createElement("input"),{
+        type:'file',
+        accept:"images/*",
+        style:'display:none;',
+        class:"textbox"
+        })
+    imgInp.click()
 }
 
 function activate(n) {

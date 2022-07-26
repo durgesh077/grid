@@ -53,7 +53,7 @@ async function login(req, res) {
         let ret = await customerModel.findOne({ userId, password })
         if (ret == null) {
             res.status(404)
-            res.send("Either username of password is wrong!")
+            res.send("Either username or password is wrong!")
         } else {
             session.userName = ret.userName
             session.userId = ret.userId

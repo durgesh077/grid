@@ -7,7 +7,6 @@ async function genPDF(brand_name,model_name,serial_number,
 						history){
 	let warranty_QR_img=await qr.toBuffer(new String(warranty_number).toString())
 	let doc=new PDFDocument()
-	
 	let imageWidth = 180 // image width
 	let image_pos_x=doc.page.width-imageWidth;
 	let image_pos_y=0;
@@ -36,24 +35,27 @@ async function genPDF(brand_name,model_name,serial_number,
 	text(" "+serial_number)
 	doc.moveDown(0.5)
 
-	let dayInSeconds=24*60*60*1000
-	let purchase_date=new Date(new Date(expiry_date)- warranty_period *365*dayInSeconds)
+	let dayInMilliSeconds=24*60*60*1000
+	let expiryTimeStamp=new Date(expiry_date)-0;
+	let expDate=new Date(expiryTimeStamp)
+	let purchaseTimeStamp=expDate.setMonth(expDate.getMonth()-warranty_period)
+	let purDate=new Date(purchaseTimeStamp)
 
 	doc.fillColor('black').text("Purchase Date:",{continued:true}).fillColor('green').
-	text(" "+purchase_date.toLocaleDateString(),{continued:true}).fillColor('darkgray').text("(mm/dd/yyyy)")
+	text(" "+new Date(purchaseTimeStamp).toLocaleDateString(),{continued:true}).fillColor('darkgray').text("(mm/dd/yyyy)")
 	doc.moveDown(0.5)
 
 	doc.fillColor('black').text("Expiry Date:",{continued:true}).fillColor('tomato').
-	text(" "+new Date(expiry_date).toLocaleDateString(),{continued:true}).fillColor('darkgray').text("(mm/dd/yyyy)")
+	text(" "+new Date(expiryTimeStamp).toLocaleDateString(),{continued:true}).fillColor('darkgray').text("(mm/dd/yyyy)")
 	doc.moveDown(0.5)
 
 
-	let remaining_days=Math.max(0,Math.floor((new Date(expiry_date)-new Date())/(dayInSeconds)))
+	let remaining_days=Math.max(0,Math.floor((new Date(expiryTimeStamp)-new Date())/(dayInMilliSeconds)))
 	doc.fillColor('black').text("Remaining days:",{continued:true}).fillColor('red')
 	.text(" "+remaining_days+" days",)
 	doc.moveDown(0.5)
 
-	doc.fillColor('black').text("Warranty Period (in years) :",{continued:true}).fillColor('darkcyan').
+	doc.fillColor('black').text("Warranty Period (in months) :",{continued:true}).fillColor('darkcyan').
 	text(" "+warranty_period)
 	doc.moveDown(1.5)
 
