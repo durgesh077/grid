@@ -18,21 +18,19 @@
     <header class="mhdr">
         <ul class="navigator">
             <% let __dirname=process.cwd()%>
-            <%- include( __dirname+"/views/static/partials/navigationBar.html") %>
+                <%- include( __dirname+"/views/static/partials/navigationBar.html") %>
         </ul>
     </header>
     <section class="loginForm">
         <h2>Login Panel</h2>
         <form action="/retailer/loginForm" method="post" onsubmit="return submitForm(event)">
             <label for="userid">Username</label> <br>
-            <input type="text" name="userId" id="userid" placeholder="Username" required>
+            <input type="text" name="userId" id="userid" placeholder="Username" pattern="[A-Za-z0-9]+" required>
             <label for="pass">Password</label><br>
-            <input type="password" placeholder="Password" name="password" id="pass" required><br>
-            <p id='forgot'
-            style="color:white;text-align: right;
-            margin-right:8px;cursor:pointer"
-            onclick="forgotPassword(this)" 
-            >forgot password (Delete account)</p>
+            <input type="password" placeholder="Password" name="password" id="pass" pattern=".{6,}"
+                title="must be six or more symbols/characters" required><br>
+            <p id='forgot' style="color:white;text-align: right;
+            margin-right:8px;cursor:pointer" onclick="forgotPassword(this)">forgot password (Delete account)</p>
             <button type="submit" id="btnli" class="btn">
                 Login
             </button>
@@ -50,7 +48,7 @@
     </section>
 
 
-        <div id="messenger" style="
+    <div id="messenger" style="
                   position:fixed;
                   z-index:1;
                   top:50vh;
@@ -60,6 +58,7 @@
                   padding:5px 10px;
                   opacity:0;
                   transition:opacity 0.5s ease-in-out">
-        </div>
+    </div>
 </body>
+
 </html>
