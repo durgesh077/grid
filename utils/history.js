@@ -1,9 +1,9 @@
-let contract = require("../web3/contractConnect")
+let contractPromise = require("../web3/contractConnect")
 const web3 = require('../web3/web3')
 async function getHistory(sNo) {
     let ret;
     try {
-        contract = await contract
+        let {contract} = await contractPromise
         let data = await contract.getPastEvents('Mint', {
             fromBlock: 0
         })
@@ -29,7 +29,7 @@ async function getHistory(sNo) {
 
 
     try {
-        contract = await contract
+        let {contract} = await contractPromise
         let data = await contract.getPastEvents('Transfer', {
             fromBlock: 0
         })

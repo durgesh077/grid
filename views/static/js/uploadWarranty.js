@@ -82,6 +82,7 @@ async function submitForm() {
                 fd.get("remarks")].join('\/')
 
     try {
+        showMessage("uploading...","maroon","upload",-1);
         let hash = web3.utils.keccak256(body)
         let hashContent = await web3.eth.personal.sign(hash, accountNumber)
         fd.append("hashContent", hashContent)

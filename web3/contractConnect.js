@@ -13,7 +13,7 @@ module.exports = (async () => {
         let contract = new web3.eth.Contract(contractABI, address, {
             from: acc
         })
-        return contract
+        return {contract,accountNumber:acc,address}
     }catch(err){
         console.log(err.message)
     }

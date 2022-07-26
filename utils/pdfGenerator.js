@@ -3,9 +3,10 @@ let qr=require("qrcode")
 let fs=require('fs')
 //it is used for generating warranty card in pdf form 
 async function genPDF(brand_name,model_name,serial_number,
-						warranty_period,expiry_date,warranty_number,remarks,
-						history){
-	let warranty_QR_img=await qr.toBuffer(new String(warranty_number).toString())
+						warranty_period,expiry_date,curTime,remarks,
+						history,qrData="empty"){
+	try{
+	let warranty_QR_img=await qr.toBuffer(qrData)
 	let doc=new PDFDocument()
 	let imageWidth = 180 // image width
 	let image_pos_x=doc.page.width-imageWidth;
@@ -17,7 +18,7 @@ async function genPDF(brand_name,model_name,serial_number,
       });
 	let margin=3;
 	doc.fontSize(8)
-	doc.text(warranty_number,{align:'center',valign:'top'})
+	doc.text(curTime,{align:'center',valign:'top'})
 	doc.rect(margin, margin, doc.page.width-2*margin, doc.page.height-2*margin).strokeColor('green').lineWidth(7).stroke();
 	doc.rect(image_pos_x+20,image_pos_y+20,imageWidth-2*20,imageWidth-2*20).strokeColor('black').lineWidth(3).stroke();
 	doc.fontSize(15)
@@ -85,7 +86,9 @@ async function genPDF(brand_name,model_name,serial_number,
 		addPage(doc,his)
 		doc.moveDown(1)
 		}
-	doc.end()
 	return doc
+	}catch(err){
+		console.error(err.message||err)
+	}
 }
 module.exports=genPDF

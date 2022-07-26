@@ -46,7 +46,7 @@ router.patch("/register", async (req, res) => {
 })
 
 router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
-    let contract = await contractPromise;
+    let {contract} = await contractPromise;
     let { minterName, mobile_no, serial_no, warranty_id, startAfter } = req.body
     try {
 
@@ -76,7 +76,7 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
 })
 
 router.post("/burnNFT", authenticationMiddleware, async (req, res) => {
-    let contract = await contractPromise;
+    let {contract} = await contractPromise;
     let { minterName, serial_no } = req.body
 
     try {
