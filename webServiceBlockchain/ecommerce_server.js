@@ -49,36 +49,28 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
     let {contract} = await contractPromise;
     let { minterName, mobile_no, serial_no, warranty_id, startAfter } = req.body
     try {
-        console.table({ minterName, mobile_no, serial_no, warranty_id, startAfter })
+
         await minterModel.create({
             minterName,
             serial_no
         })
         let doc=await warrantyModel.findById(warranty_id)
         let CID=doc.CID
-        try{
-            let receipt = await contract.methods.mintWarrantyCardNFT(mobile_no, serial_no, CID, startAfter).send();
-            res.send(receipt)
-        }catch(err){
-            if (err.message === "nonce too low"){
-                console.log('vahi galti')
-                throw "NOnce is too loow"
-            }
-            res.status(200)
-        }
+        let receipt = await contract.methods.mintWarrantyCardNFT(mobile_no, serial_no, CID, startAfter).send();
         let body=`You warranty NFT for gadget having Serial No ${serial_no} has started  from now. If replaced within ${Math.ceil(startAfter/oneDay)} days, your warranty NFT will be discarded.
         You can download you warranty card in pdf format at http://localhost:8000/user/getReceipt?mobile_no=${mobile_no}&serial_no=${serial_no}.
         To share Your NFT please visit http://localhost:8000/user/sendNFT.
         Thank You`;
-        //await client.messages
-        //    .create({
-        //        from: '+19593012344',
-        //        body,
-        //        to: "+91" + mobile_no
-        //    })
+        await client.messages
+            .create({
+                from: '+19593012344',
+                body,
+                to: "+91" + mobile_no
+            })
+        res.status(200)
+        res.send(receipt)
     } catch (err) {
-        console.log(err)
-        res.status(405)
+        res.status(501)
         res.send(err.message)
     }
 })
@@ -93,17 +85,10 @@ router.post("/burnNFT", authenticationMiddleware, async (req, res) => {
             res.status(405).send("You are not allowed")
             return
         }
-        try{
-            console.log({minterName,serial_no})
         let receipt = await contract.methods.burnWarrantyCardNFT(serial_no).send();
         res.status(200)
         res.send(receipt)
-        }catch(err){
-            res.status(400).send(err.message)
-            console.log(err)
-        }
     } catch (err) {
-        console.log("downerr",err)
         res.status(501)
         res.send(err.message)
     }
