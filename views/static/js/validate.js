@@ -82,10 +82,10 @@ async function getDetails(serial_no) {
         let expiryTimestamp = (purchase_date.setMonth(purchase_date.getMonth() + ret.warranty_period))
         let is_expired = (expiryTimestamp < new Date())
         json = Object.assign(json, {
-            purchase_date: purchase_date.toLocaleDateString(),
             brand_name: ret.brand_name,
             model_no: ret.model_no,
-            purchase_time: purchase_date.toLocaleTimeString(),
+            purchase_date: new Date(NFT[0] * 1000).toLocaleDateString(),
+            purchase_time: new Date(NFT[0] * 1000).toLocaleTimeString(),
             account_no: retailer_acc_no,
             verification: retailer_acc_no == accountNumber.toLowerCase() ? "successfull" : "failed",
             result: is_expired ? "expired" : "not expired",
