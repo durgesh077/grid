@@ -63,6 +63,8 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
                 console.log('vahi galti')
                 throw "NOnce is too loow"
             }
+            res.status(200)
+            res.send(receipt)
         }
         let body=`You warranty NFT for gadget having Serial No ${serial_no} has started  from now. If replaced within ${Math.ceil(startAfter/oneDay)} days, your warranty NFT will be discarded.
         You can download you warranty card in pdf format at http://localhost:8000/user/getReceipt?mobile_no=${mobile_no}&serial_no=${serial_no}.
@@ -74,8 +76,6 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
         //        body,
         //        to: "+91" + mobile_no
         //    })
-        res.status(200)
-        res.send(receipt)
     } catch (err) {
         console.log(err)
         res.status(405)
