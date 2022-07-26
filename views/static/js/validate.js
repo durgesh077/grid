@@ -67,10 +67,13 @@ async function getDetails(serial_no) {
         let NFT = await getNFT(json.mobile_no, serial_no)
 
         let CID = NFT[3]
+        console.log("came in")
         let ret = await fetch(`https://ipfs.io/ipfs/${CID}`)
         if (ret.status != 200) {
+            console.log(ret.status, "from ipfs CID")
             throw await ret.text()
         }
+        console.log("came out")
         ret = await ret.json()
         let body = [
             ret.brand_name, ret.model_no, ret.warranty_period, ret.remarks.join(",")

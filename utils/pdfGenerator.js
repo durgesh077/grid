@@ -10,7 +10,6 @@ async function genPDF(brand_name, model_name, serial_number,
 		let purchase_date = new Date(purchaseTimestamp)
 		let expiryTimestamp = purchase_date.setMonth(purchase_date.getMonth() + warranty_period)
 		let expDate = new Date(expiryTimestamp)
-		console.log(purchaseTimestamp)
 
 		let warranty_QR_img = await qr.toBuffer(qrData)
 		let doc = new PDFDocument()

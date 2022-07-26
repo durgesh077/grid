@@ -8,6 +8,7 @@ const pdfGenerator = require("../utils/pdfGenerator")
 const genPDF = require("../utils/pdfGenerator")
 const getHistory = require("../utils/history")
 const minterModel = require("../model/minter")
+const Promise_any = require("promise.any")
 const oneDay = 24 * 60 * 60 * 1000
 const oneMonth = 30 * oneDay
 
@@ -87,10 +88,11 @@ router.get("/getReceipt", async (req, res) => {
         let [startTimestamp, endTimeInterval, serial_no, CID] = NFT
         startTimestamp *= 1000
         endTimeInterval *= 1000
-        let url = `https://ipfs.io/ipfs/${CID}`
         let curTime = new Date() - 0;
-        let { brand_name, model_no, warranty_period, remarks, } = JSON.parse((await readURL(url)).toString())
-
+        let url1 = `https://ipfs.io/ipfs/${CID}`
+        let url2 = `https://gateway.pinata.cloud/ipfs/${CID}`
+        let contentIPFS_buffer = await Promise_any([readURL(url1), readURL(url2)])
+        let { brand_name, model_no, warranty_period, remarks, } = JSON.parse(contentIPFS_buffer.toString())
         let history = await getHistory(serial_no)
         let qrData = `Contract Address : ${address} \n\n account No: ${accountNumber}`
         let doc = await genPDF(brand_name, model_no, serial_no, warranty_period, startTimestamp,
@@ -100,7 +102,7 @@ router.get("/getReceipt", async (req, res) => {
             .on('end', () => {
                 res.setHeader("Content-Type", "application/pdf")
                 res.send(Buffer.concat(pdfBuf))
-            }).on('error', (err) => console.log(err.message || err))
+            }).on('error', (err) => res.status(400).send(err.message || err))
         doc.end()
     } catch (err) {
         console.log(err)
