@@ -17,7 +17,7 @@ router.get('/sendNFT', (req, res) => {
     res.render('../views/transferNFT')
 })
 router.post('/OTPForTransferNFT', async (req, res) => {
-    let {contract} = await contractPromise;
+    let { contract } = await contractPromise;
     let { from_mobile_no, to_mobile_no, serial_no } = req.body;
     let sent = await sendOTP(from_mobile_no, to_mobile_no, serial_no)
     if (!sent) {
@@ -31,7 +31,7 @@ router.post('/OTPForTransferNFT', async (req, res) => {
 })
 
 router.post('/transferNFT', async (req, res) => {
-    let {contract} = await contractPromise;
+    let { contract } = await contractPromise;
     let { from_mobile_no, to_mobile_no, serial_no, otp } = req.body;
     let sent = verifyOTP(from_mobile_no, otp)
     if (!sent) {
@@ -51,7 +51,7 @@ router.post('/transferNFT', async (req, res) => {
 })
 
 async function getOwnerOf(serial_no) {
-    let {contract} = await contractPromise;
+    let { contract } = await contractPromise;
     try {
         let owner = await contract.methods.getSerialNoOwnerMobileNo(serial_no).call()
         return owner;
@@ -62,7 +62,7 @@ async function getOwnerOf(serial_no) {
 
 
 router.get("/getNFT", async (req, res) => {
-    let {contract} = await contractPromise;
+    let { contract } = await contractPromise;
     let { mobile_no, serial_no } = req.query;
     try {
         let NFT = await contract.methods.getNFTFor(mobile_no, serial_no).call()
@@ -80,31 +80,30 @@ router.get("/transferWarranty", (req, res) => {
 })
 
 router.get("/getReceipt", async (req, res) => {
-    let {contract,address,accountNumber} = await contractPromise;
+    let { contract, address, accountNumber } = await contractPromise;
     let { mobile_no, serial_no: serial_no_q } = req.query;
     try {
-        let NFT = await contract.methods.getNFTFor(mobile_no,serial_no_q).call()
-        let [startTime, endTimeInterval, serial_no, CID] = NFT
-        startTime *= 1000
+        let NFT = await contract.methods.getNFTFor(mobile_no, serial_no_q).call()
+        let [startTimestamp, endTimeInterval, serial_no, CID] = NFT
+        startTimestamp *= 1000
         endTimeInterval *= 1000
         let url = `https://ipfs.io/ipfs/${CID}`
         let curTime = new Date() - 0;
         let { brand_name, model_no, warranty_period, remarks, } = JSON.parse((await readURL(url)).toString())
 
-        let startDate = new Date(startTime).toLocaleDateString()
-        let expiryDate = new Date(startTime + warranty_period * oneMonth).toLocaleDateString()
         let history = await getHistory(serial_no)
         let qrData = `Contract Address : ${address} \n\n account No: ${accountNumber}`
-        let doc = await genPDF(brand_name, model_no, serial_no, warranty_period, expiryDate,
-            curTime, remarks, history,qrData)
+        let doc = await genPDF(brand_name, model_no, serial_no, warranty_period, startTimestamp,
+            curTime, remarks, history, qrData)
         let pdfBuf = []
         doc.on('data', chunk => pdfBuf.push(chunk))
             .on('end', () => {
                 res.setHeader("Content-Type", "application/pdf")
                 res.send(Buffer.concat(pdfBuf))
-            }).on('error',(err)=>console.log(err.message||err))
+            }).on('error', (err) => console.log(err.message || err))
         doc.end()
     } catch (err) {
+        console.log(err)
         res.status(502).send("<center><strong>&times; PDF generation Failed</strong></center>")
     }
 })
