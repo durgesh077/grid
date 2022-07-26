@@ -25,7 +25,9 @@
         <h2>Login Panel</h2>
         <form action="/retailer/loginForm" method="post" onsubmit="return submitForm(event)">
             <label for="userid">Username</label> <br>
-            <input type="text" name="userId" id="userid" placeholder="Username" pattern="[A-Za-z0-9]+" required>
+            <input type="text" name="userId" id="userid" placeholder="Username" 
+            title="must contain only letters ,underscore or number"
+            pattern="[A-Za-z0-9_]+" required>
             <label for="pass">Password</label><br>
             <input type="password" placeholder="Password" name="password" id="pass" pattern=".{6,}"
                 title="must be six or more symbols/characters" required><br>

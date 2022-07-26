@@ -34,17 +34,23 @@
                 <div class="form-group">
                     <div class="form-wrapper">
                         <label for="">First Name</label>
-                        <input type="text" name="userName" class="form-control" pattern="[a-zA-Z0-9]{1,20}" required>
+                        <input type="text" name="userName" class="form-control" pattern="[a-zA-Z0-9_]{1,20}"
+                        title="must contain only letters ,underscore or number"
+                        required>
                     </div>
                     <div class="form-wrapper">
                         <label for="">Last Name</label>
-                        <input type="text" name="lname" class="form-control" pattern="[a-zA-Z0-9]{1,20}" required>
+                        <input type="text" name="lname" class="form-control" pattern="[a-zA-Z0-9_]{1,20}"
+                        title="must contain only letters ,underscore or number"
+                         required>
                     </div>
                 </div>
 
                 <div class="form-wrapper">
                     <label for="">User ID</label>
-                    <input type="text" name="userId" class="form-control" pattern="[A-Za-z0-9]+" required>
+                    <input type="text" name="userId" class="form-control" pattern="[A-Za-z0-9_]+" 
+                    title="must contain only letters ,underscore or number"
+                    required>
                 </div>
                 <div class="form-wrapper">
                     <label for="">Password</label>
