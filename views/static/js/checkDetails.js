@@ -51,7 +51,7 @@ async function search() {
             NFT = await NFT.json()
             let CID = NFT[3]
 
-            ret = await fetch(`https://ipfs.io/ipfs/${CID}`)
+            ret = await Promise.any([fetch(`https://ipfs.io/ipfs/${CID}`), fetch(`https://gateway.pinata.cloud/ipfs/${CID}`)])
             if (ret.status != 200) {
                 throw await ret.text()
             }
