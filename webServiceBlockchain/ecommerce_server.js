@@ -61,12 +61,12 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
         You can download you warranty card in pdf format at http://localhost:8000/user/getReceipt?mobile_no=${mobile_no}&serial_no=${serial_no}.
         To share Your NFT please visit http://localhost:8000/user/sendNFT.
         Thank You`;
-        await client.messages
-            .create({
-                from: '+19593012344',
-                body,
-                to: "+91" + mobile_no
-            })
+        //await client.messages
+        //    .create({
+        //        from: '+19593012344',
+        //        body,
+        //        to: "+91" + mobile_no
+        //    })
         res.status(200)
         res.send(receipt)
     } catch (err) {
