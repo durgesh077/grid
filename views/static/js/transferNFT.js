@@ -16,11 +16,14 @@ async function sendOTP(el) {
             method: 'post',
             body: sp,
         })
+        //if(ret.status)
         button.disabled = false;
         button.style.cursor = "default"
-        if (ret.status != 200) {
-            alert("failed!!")
+        if (ret.status === 502) {
+            showMessage(await ret.text(),'brown','times')
             return
+        }else{
+            showMessage(await ret.text(), "green", 'check',10000)
         }
         
         let otpLabel=document.getElementById("otpLabel")
@@ -28,7 +31,7 @@ async function sendOTP(el) {
         button.innerHTML = "verify OTP"
         button.onclick = verifyOTPToTransfer
     } catch (err) {
-        sendMessage(err.message,"red","times")
+        showMessage(err.message,"red","times")
     }
 }
 
@@ -61,11 +64,11 @@ async function verifyOTPToTransfer() {
     button.onclick=sendOTP
 }
 let messenger=document.getElementById("messenger")
-function showMessage(msg, bg, fa) {
+function showMessage(msg, bg, fa, ttl = 5000) {
     messenger.style.backgroundColor = bg;
     messenger.innerHTML = `<i class='fas fa-${fa}'></i> ` + msg;
     messenger.style.opacity = 1;
-    let timeToLeave = 5000
+    let timeToLeave = ttl
     setTimeout(() => messenger.style.opacity = (0), timeToLeave)
     setTimeout(() => messenger.innerHTML = "", timeToLeave + 2000)
 }

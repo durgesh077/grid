@@ -21,14 +21,15 @@ router.post('/OTPForTransferNFT', async (req, res) => {
     let { contract } = await contractPromise;
     let { from_mobile_no, to_mobile_no, serial_no } = req.body;
     let sent = await sendOTP(from_mobile_no, to_mobile_no, serial_no)
-    if (!sent) {
-        res.status(404)
-        res.send("Failed")
+    if (sent===false) {
+        res.status(502)
+        res.send("OTP sending Failed...")
         return
-    }
-
-
-    res.send("sent")
+    }else if(sent==true)
+        res.send("OTP sent")
+        else {
+            res.send("Sorry! Your messaging API's trial balance has finished.<br/> You OTP is <span style='background-color:lightblue;color:red'>"+ sent +"</span>")
+        }
 })
 
 router.post('/transferNFT', async (req, res) => {

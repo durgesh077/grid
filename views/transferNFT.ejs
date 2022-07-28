@@ -24,13 +24,13 @@
     <section class="loginForm">
         <h2>Transfer Panel</h2>
         <form  method="post" id="transferNFT">
-            <input type="text" name="from_mobile_no" id="from" placeholder="From...." required>
-            <input type="text" placeholder="To..." name="to_mobile_no" id="to" required><br>
+            <input type="tel" name="from_mobile_no" id="from" placeholder="From...." required>
+            <input type="tel" placeholder="To..." name="to_mobile_no" id="to" required><br>
             <input type="text" placeholder="Serial no..." name="serial_no" id="serial_no" required><br>
 
             <label style="display:none" id="otpLabel">
                 <input type="number" placeholder="otp" size="6" 
-                 name="otp" id="otp">
+                 name="otp" id="otp" pattern ="[0-9]{6}">
             </label>
 
             <button type="button" id="btnli" class="btn" onclick="sendOTP(this)">
