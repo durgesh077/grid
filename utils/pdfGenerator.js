@@ -8,8 +8,10 @@ async function genPDF(brand_name, model_name, serial_number,
 		try {
 		let dayInMilliSeconds = 24 * 60 * 60 * 1000
 		let purchase_date = new Date(purchaseTimestamp)
-		purchase_date.setMonth(purchase_date.getMonth() + warranty_period)
+		console.log(warranty_period)
+		purchase_date.setMonth((purchase_date.getMonth()) + parseInt(warranty_period))
 		let expiryTimestamp=purchase_date-0
+		console.log(warranty_period)
 		purchase_date=new Date(purchaseTimestamp)
 		let expDate = new Date(expiryTimestamp)
 		
