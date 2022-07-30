@@ -58,8 +58,8 @@ router.post("/mintNFT", authenticationMiddleware, async (req, res) => {
         let CID=doc.CID
         let receipt = await contract.methods.mintWarrantyCardNFT(mobile_no, serial_no, CID, startAfter).send();
         let body=`You warranty NFT for gadget having Serial No ${serial_no} has started  from now. If replaced within ${Math.ceil(startAfter/oneDay)} days, your warranty NFT will be discarded.
-        You can download you warranty card in pdf format at http://localhost:8000/user/getReceipt?mobile_no=${mobile_no}&serial_no=${serial_no}.
-        To share Your NFT please visit http://localhost:8000/user/sendNFT.
+        You can download you warranty card in pdf format at https://nft-warranty.herokuapp.com/user/getReceipt?mobile_no=${mobile_no}&serial_no=${serial_no}.
+        To share Your NFT please visit http://nft-warranty.herokuapp.com/user/sendNFT.
         Thank You`;
         try{
             await client.messages
