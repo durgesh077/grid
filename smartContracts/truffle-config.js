@@ -63,6 +63,13 @@ module.exports = {
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
     },
+    sepolia: {
+      provider: () => new HDWalletProvider(Mnemonic, infura_api),
+      network_id: 11155111,       // sepolia's id
+      gas: 5500000,   
+      networkCheckTimeout: 1200000,    // Ropsten has a lower block limit than mainnet
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+    },
     // Useful for private networks
     // private: {
     // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),

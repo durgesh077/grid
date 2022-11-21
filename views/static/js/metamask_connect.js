@@ -1,4 +1,4 @@
-const contractAddress ='0xA297A3B6800fCabf18c7f7b7435b105A2e609788';
+const contractAddress ='0x408f08eC1deEdfEB967d29912e894fc16187c221';
 const ABI=[
         {
             "inputs": [],
@@ -231,6 +231,8 @@ let accountNumber;
 			"3":"ropsten",
 			"4":"rinkyby",
 			"1337":"ganache",
+            "11155111": "goerli",
+            "5": "sepolia"
 		}
 		if (web3)
 			contract = new web3.eth.Contract(ABI, contractAddress);
