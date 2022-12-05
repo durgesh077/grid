@@ -20,7 +20,7 @@ router.get("/warrantyDetail", async (req, res) => {
         res.status(400).send(err.message)
     }
 })
-
+//getting ether account No
 
 router.get("/getEthAccountno",async(req,res)=>{
     let {userId}=req.query
