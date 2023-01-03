@@ -3,7 +3,7 @@ flipkart grid project
 <table>
 <tr>
 <td>deployed-website-link </td> 
-<td>https://nft-warranty.herokuapp.com/</td>
+<td>https://nft-warranty.onrender.com/</td>
 </tr>
 <tr>
  <td>ropsten-ethereum-contract-address </td> 
